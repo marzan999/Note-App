@@ -1,10 +1,14 @@
-import { View, Text, Image, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Input from '../components/input';
 import Button from '../components/Button';
 
-export default function Login() {
+export default function Login({navigation}) {
+
+    const navigateToSignUp = () => {
+        navigation.navigate('Signup')
+    }
     return (
         <SafeAreaView>
             <View>
@@ -24,11 +28,11 @@ export default function Login() {
 
             </View>
 
-            <View style={{marginTop: 25}}>
+            <TouchableOpacity onPress={navigateToSignUp} style={{marginTop: 25}}>
                 <Text style={{textAlign: 'center'}}>
                     Don't have an account? <Text style={{color: '#18B18D', fontWeight: 'bold'}}>Sign up</Text>
                 </Text>
-            </View>
+            </TouchableOpacity>
 
         </SafeAreaView>
     )
