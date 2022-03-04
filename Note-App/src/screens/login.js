@@ -23,6 +23,13 @@ export default function Login() {
                 <Button title='Login' customStyle={{marginTop:25, alignSelf: 'center' }} />
 
             </View>
+
+            <View style={{marginTop: 25}}>
+                <Text style={{textAlign: 'center'}}>
+                    Don't have an account? <Text style={{color: '#18B18D', fontWeight: 'bold'}}>Sign up</Text>
+                </Text>
+            </View>
+
         </SafeAreaView>
     )
 }
