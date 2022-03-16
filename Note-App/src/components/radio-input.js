@@ -1,16 +1,17 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function RadioInput({ lebel }) {
+export default function RadioInput({ lebel, value, setValue }) {
+    const isSelected = value === lebel;
     return (
-        <View>
+        <TouchableOpacity onPress={() => setValue(lebel)}>
             <View style={styles.container}>
-                <View style={styles.outerCircle}>
-                    <View style={styles.innerCircle} />
+                <View style={[styles.outerCircle, isSelected && {borderColor: '#D87D4A'}]}>
+                    <View style={[styles.innerCircle, isSelected && {borderColor: '#D87D4A', backgroundColor: '#D87D4A'}]} />
                 </View>
                 <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>{lebel}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
