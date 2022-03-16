@@ -2,7 +2,7 @@ import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'reac
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Input from '../components/input';
-import Button from '../components/Button';
+import Button from '../components/button';
 
 export default function Login({navigation}) {
 
