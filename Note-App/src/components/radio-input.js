@@ -6,8 +6,8 @@ export default function RadioInput({ lebel, value, setValue }) {
     return (
         <TouchableOpacity onPress={() => setValue(lebel)}>
             <View style={styles.container}>
-                <View style={[styles.outerCircle, isSelected && {borderColor: '#D87D4A'}]}>
-                    <View style={[styles.innerCircle, isSelected && {borderColor: '#D87D4A', backgroundColor: '#D87D4A'}]} />
+                <View style={[styles.outerCircle, isSelected && styles.selectedOuterCircle]}>
+                    <View style={[styles.innerCircle, isSelected && styles.selectedInnerCircle]} />
                 </View>
                 <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>{lebel}</Text>
             </View>
@@ -36,5 +36,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#ccc'
+    }, 
+    selectedOuterCircle: {
+        borderColor: '#D87D4A'
+    }, 
+    selectedInnerCircle: {
+        borderColor: '#D87D4A', 
+        backgroundColor: '#D87D4A'
     }
 });
