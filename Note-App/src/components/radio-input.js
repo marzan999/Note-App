@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#ccc'
-    }, 
+    },
     selectedOuterCircle: {
         borderColor: '#D87D4A'
-    }, 
+    },
     selectedInnerCircle: {
-        borderColor: '#D87D4A', 
+        borderColor: '#D87D4A',
         backgroundColor: '#D87D4A'
     }
 });

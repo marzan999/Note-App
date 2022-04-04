@@ -3,6 +3,7 @@ import React from 'react'
 import Input from '../components/input'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import RadioInput from '../../src/components/radio-input'
+import Button from '../components/button'
 
 const OPTIONS = ['Male', 'Female']
 
@@ -17,17 +18,19 @@ export default function Signup() {
         <Input placeholder="Age" />
 
         <View style={{ marginTop: 20 }}>
-          {/* <RadioInput lebel="Male" />
-        <RadioInput lebel="Female" /> */}
+          <Text style={{ marginBottom: 20 }}>Select your gender</Text>
           {OPTIONS.map((option, index) => (
-            <RadioInput 
-            key={index} 
-            lebel={option} 
-            value={gender}
-            setValue={setGender}
+            <RadioInput
+              key={index}
+              lebel={option}
+              value={gender}
+              setValue={setGender}
             />
           ))}
         </View>
+
+        <Button title="submit"  customStyle={{marginTop:25, alignSelf: 'center' }}/>
+
       </View>
     </SafeAreaView>
   )
