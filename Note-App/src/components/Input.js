@@ -6,6 +6,8 @@ export default function Input({placeholder, onChangeText}) {
         <TextInput
             style={styles.textInput}
             placeholder={placeholder}
+            onChangeText={onChangeText}
+            autoCorrect={false}
         />
     )
 }

@@ -9,13 +9,19 @@ const OPTIONS = ['Male', 'Female']
 
 export default function Signup() {
   const [gender, setGender] = React.useState(null)
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [age, setAge] = React.useState('')
+
+  
   return (
     <SafeAreaView>
       <View style={{ margin: 25 }}>
-        <Input placeholder="Email" />
-        <Input placeholder="Password" />
-        <Input placeholder="Full name" />
-        <Input placeholder="Age" />
+        <Input placeholder="Email" onChangeText={(text) => setEmail(text)}/>
+        <Input placeholder="Password" onChangeText={(text) => setPassword(text)}/>
+        <Input placeholder="Full name" onChangeText={(text) => setName(text)}/>
+        <Input placeholder="Age" onChangeText={(text) => setAge(text)}/>
 
         <View style={{ marginTop: 20 }}>
           <Text style={{ marginBottom: 20 }}>Select your gender</Text>
