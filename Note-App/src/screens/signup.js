@@ -14,14 +14,18 @@ export default function Signup() {
   const [name, setName] = React.useState('')
   const [age, setAge] = React.useState('')
 
-  
+
   return (
     <SafeAreaView>
       <View style={{ margin: 25 }}>
-        <Input placeholder="Email" onChangeText={(text) => setEmail(text)}/>
-        <Input placeholder="Password" onChangeText={(text) => setPassword(text)}/>
-        <Input placeholder="Full name" onChangeText={(text) => setName(text)}/>
-        <Input placeholder="Age" onChangeText={(text) => setAge(text)}/>
+        <Input placeholder="Email" onChangeText={(text) => setEmail(text)} />
+        <Input
+          placeholder="Password"
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry={true}
+        />
+        <Input placeholder="Full name" onChangeText={(text) => setName(text)} />
+        <Input placeholder="Age" onChangeText={(text) => setAge(text)} />
 
         <View style={{ marginTop: 20 }}>
           <Text style={{ marginBottom: 20 }}>Select your gender</Text>
@@ -35,7 +39,7 @@ export default function Signup() {
           ))}
         </View>
 
-        <Button title="submit"  customStyle={{marginTop:25, alignSelf: 'center' }}/>
+        <Button title="submit" customStyle={{ marginTop: 25, alignSelf: 'center' }} />
 
       </View>
     </SafeAreaView>
