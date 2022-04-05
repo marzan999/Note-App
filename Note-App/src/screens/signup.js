@@ -8,7 +8,7 @@ import Button from '../components/button'
 const OPTIONS = ['Male', 'Female']
 
 export default function Signup() {
-  const [gender, setGender] = React.useState('Female')
+  const [gender, setGender] = React.useState(null)
   return (
     <SafeAreaView>
       <View style={{ margin: 25 }}>
