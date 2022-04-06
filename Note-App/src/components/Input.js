@@ -12,7 +12,7 @@ export default function Input({placeholder, onChangeText, secureTextEntry=false}
         />
     )
 }
-
+ 
 const styles = StyleSheet.create({
     textInput: {
         borderBottomWidth: 1, 
