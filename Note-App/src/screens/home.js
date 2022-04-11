@@ -40,11 +40,12 @@ const Onboarding = ({ setOnboarded }) => {
     } catch (e) {
       console.log(e)
     }
+    setOnboarded(true)
   }
 
-  React.useEffect(() => {
-    makeOnboardingTrue()
-  }, [])
+  // React.useEffect(() => {
+  //   makeOnboardingTrue()
+  // }, [])
 
   const renderItem = ({ item }) => {
 
@@ -77,10 +78,10 @@ const Onboarding = ({ setOnboarded }) => {
     )
   }
 
-  const onDone = () => {
-    alert("done")
-    setOnboarded(true)
-  }
+  // const onDone = () => {
+  //   alert("done")
+  //   setOnboarded(true)
+  // }
 
   const renderDoneButton = () => {
     return (
@@ -95,7 +96,7 @@ const Onboarding = ({ setOnboarded }) => {
     <AppIntroSlider
       renderItem={renderItem}
       data={slides}
-      onDone={onDone}
+      onDone={makeOnboardingTrue}
       keyExtractor={item => item.key}
       activeDotStyle={{ backgroundColor: 'green' }}
       renderDoneButton={renderDoneButton}
@@ -106,10 +107,11 @@ const Onboarding = ({ setOnboarded }) => {
 
 }
 
-export default function Home() {
+export default function Home({ navigation }) {
 
   const [checking, setChecking] = React.useState(true)
   const [onboarded, setOnboarded] = React.useState(false)
+  const [notes, setNotes] = React.useState([])
 
   const getOnboardingValue = async () => {
     // AsyncStorage.removeItem('onboarding')
@@ -146,12 +148,40 @@ export default function Home() {
     )
   }
 
+
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* <Text>Home</Text>
       <Pressable onPress={() => firebase.auth().signOut()}>
         <Text>LOGOUT</Text>
-      </Pressable>
+      </Pressable> */}
+
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 20 }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#18B18D' }}>
+          My Notes
+        </Text>
+
+        <Pressable onPress={() => navigation.navigate('Create')}>
+          <AntDesign name="pluscircle" size={24} color="#18B18D" />
+        </Pressable>
+      </View>
+
+      {
+        notes.length === 0 ? (
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+            <Image source={require('../../assets/empty-state.png')} />
+
+            <Text style={{ fontSize: 18, marginTop: 20 }}>
+              You don't have any note yet.
+            </Text>
+
+          </View>
+        ) : (
+          <View />
+        )
+      }
+
     </SafeAreaView>
   )
 }
