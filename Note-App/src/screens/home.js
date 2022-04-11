@@ -4,6 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { firebase } from '../config'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import Button from '../components/button';
+import { AntDesign } from '@expo/vector-icons';
+
 
 
 const slides = [
@@ -30,7 +33,7 @@ const slides = [
   }
 ];
 
-const Onboarding = () => {
+const Onboarding = ({ setOnboarded }) => {
   const makeOnboardingTrue = async () => {
     try {
       await AsyncStorage.setItem('onboarding', 'true')
@@ -45,16 +48,47 @@ const Onboarding = () => {
 
   const renderItem = ({ item }) => {
 
-    const { key, title, subtitle, text, image } = item 
+    const { title, subtitle, text, image } = item
     return (
-      <View style={{flex: 1 }}>
-      <Image source={image} style={{width: '100%', height: 300 }} resizeMode="contain"/>
+      <View style={{ flex: 1 }}>
+        <Image
+          source={image}
+          style={{ width: '100%', height: 300 }}
+          resizeMode="contain"
+        />
+
+        <View style={{ marginTop: 30 }}>
+
+          <Text style={{ textAlign: 'center', fontSize: 32, fontWeight: 'bold', color: '#18B18D' }}>
+            {title}
+          </Text>
+
+          <Text style={{ textAlign: 'center', fontSize: 22, color: '#18B18D', marginTop: 20 }}>
+            {subtitle}
+          </Text>
+
+          <Text style={{ textAlign: 'center', fontSize: 18, marginTop: 20, marginHorizontal: 40 }}>
+            {text}
+          </Text>
+
+        </View>
+
       </View>
     )
   }
 
   const onDone = () => {
+    alert("done")
+    setOnboarded(true)
+  }
 
+  const renderDoneButton = () => {
+    return (
+      //<Button title="DONE"/>
+      <View style={{ width: 30, height: 30, backgroundColor: 'green', borderRadius: 15, justifyContent: 'center', alignItems: 'center' }}>
+        <AntDesign name="check" size={24} color="white" />
+      </View>
+    )
   }
 
   return (
@@ -63,7 +97,10 @@ const Onboarding = () => {
       data={slides}
       onDone={onDone}
       keyExtractor={item => item.key}
-      activeDotStyle={{backgroundColor: 'green'}}
+      activeDotStyle={{ backgroundColor: 'green' }}
+      renderDoneButton={renderDoneButton}
+    // bottomButton
+    // showDoneButton={false}
     />
   )
 
@@ -75,6 +112,7 @@ export default function Home() {
   const [onboarded, setOnboarded] = React.useState(false)
 
   const getOnboardingValue = async () => {
+    // AsyncStorage.removeItem('onboarding')
     try {
       const value = await AsyncStorage.getItem('onboarding')
       if (value !== null) {
@@ -94,18 +132,18 @@ export default function Home() {
     getOnboardingValue()
   }, []);
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <Onboarding/>
-    </SafeAreaView>
-  )
+
 
   if (checking) {
     return null
   }
 
   if (!onboarded) {
-    return <Onboarding />
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <Onboarding setOnboarded={setOnboarded} />
+      </SafeAreaView>
+    )
   }
 
   return (
