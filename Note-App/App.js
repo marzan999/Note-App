@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/home';
@@ -8,6 +8,7 @@ import Update from './src/screens/update';
 import Login from './src/screens/login';
 import Signup from './src/screens/signup';
 import React from 'react';
+import { firebase } from './src/config';
 
 const AppTheme = {
   ...DefaultTheme,
@@ -21,7 +22,27 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [user, setUser] = React.useState(false)
+  const [loading, setLoading] = React.useState(true);
+
+  const [user, setUser] = React.useState(false);
+
+  function authStateChanged(user) {
+    setUser(user);
+    setLoading(false);
+  }
+
+  React.useEffect(() => {
+    const subscribe = firebase.auth().onAuthStateChanged(authStateChanged);
+  }, [])
+
+  if(loading) {
+    return(
+      <View style={{felx: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator />
+      </View>
+      
+    )
+  }
 
   return (
     <NavigationContainer theme={AppTheme}>
