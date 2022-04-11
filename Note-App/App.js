@@ -27,6 +27,7 @@ export default function App() {
   const [user, setUser] = React.useState(false);
 
   function authStateChanged(user) {
+    console.log("user ", user);
     setUser(user);
     setLoading(false);
   }
