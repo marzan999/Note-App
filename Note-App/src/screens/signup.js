@@ -38,9 +38,9 @@ export default function Signup() {
           gender: gender,
         }
 
-const userRef = firebase.firestore().collection("users");
+        const userRef = firebase.firestore().collection("users");
 
-userRef.doc(uid).set(userProfileData);
+        userRef.doc(uid).set(userProfileData);
 
         setLoading(false)
       }).catch((error) => {
